@@ -1,4 +1,6 @@
-/* ===== ПЕРЕМЕННЫЕ ===== */
+/* =========================
+   1. ОСНОВНЫЕ НАСТРОЙКИ
+========================= */
 :root {
   --bg-1: #0b0f17;
   --bg-2: #131a26;
@@ -7,42 +9,31 @@
   --border: rgba(255, 255, 255, 0.12);
   --text: #eef2f7;
   --muted: #9aa7b8;
-  --accent: #4f9dff;      /* синий — основной */
-  --accent-2: #8b5cf6;    /* фиолетовый — парный */
-  --red: #ff4d6d;         /* красный — точечный акцент */
+  --accent: #4f9dff;
+  --accent-2: #8b5cf6;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
-/* ===== ФОН ===== */
 body {
-  font-family: -apple-system, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
-  color: var(--text);
-  margin: 0;
-  padding: 32px 20px;
-  min-height: 100vh;
-  line-height: 1.6;
-  background:
+  font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: 
     radial-gradient(1200px 600px at 10% -10%, rgba(79, 157, 255, 0.18), transparent 60%),
     radial-gradient(1000px 500px at 90% 0%, rgba(139, 92, 246, 0.16), transparent 55%),
-    radial-gradient(900px 500px at 50% 110%, rgba(224, 54, 85, 0.384), transparent 60%),
     linear-gradient(180deg, var(--bg-1), var(--bg-2));
   background-attachment: fixed;
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden; /* Важно, чтобы бегущая строка не создавала горизонтальный скролл */
 }
 
-/* контент по центру */
-body > * {
-  max-width: 820px;
-  margin-left: auto;
-  margin-right: auto;
-}
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1000px; margin: auto; padding: 0 24px; }
+section { padding: 90px 0; }
 
-/* ===== СТЕКЛО (общий класс) ===== */
-header, main, footer,
-.hero, .goal, .event, .project, .about-intro,
-.contact-card, .card-link, .error-page {
+/* Стекло */
+.glass {
   background: var(--glass);
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
@@ -50,386 +41,222 @@ header, main, footer,
   border-radius: 16px;
 }
 
-/* ===== ШАПКА ===== */
-header {
-  padding: 20px 24px;
-  margin-bottom: 20px;
-}
+/* Заголовки секций */
+.section-title { font-size: 1.3rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+.section-desc { color: var(--muted); margin-bottom: 40px; font-size: 1.05rem; }
 
-header h1 {
-  margin: 0 0 12px;
-  font-size: 1.7rem;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  background: linear-gradient(90deg, #ffffff, #9ecbff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ===== МЕНЮ ===== */
-nav {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-nav a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 0.95rem;
-  padding: 6px 14px;
-  border-radius: 999px;
-  transition: all 0.2s ease;
-}
-
-nav a:hover {
-  color: var(--text);
-  background: var(--glass-strong);
-}
-
-/* ===== MAIN ===== */
-main {
-  padding: 28px 24px;
-}
-
-main h2 {
-  font-size: 1.15rem;
-  color: var(--muted);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  margin: 0 0 18px;
-}
-
-/* ===== ГЕРОЙ ===== */
-.hero {
-  padding: 36px 32px;
-  margin-bottom: 20px;
-  background: linear-gradient(135deg, rgba(79, 157, 255, 0.16), rgba(139, 92, 246, 0.12));
-}
-
-.hero h2 {
-  margin: 0 0 12px;
-  color: #ffffff;
-  font-size: 1.8rem;
-  text-transform: none;
-  letter-spacing: -0.5px;
-}
-
-.hero p {
-  margin: 0 0 24px;
-  font-size: 1.05rem;
-  color: #c9d6e6;
-}
-
-/* ===== КНОПКА ===== */
-.btn, .project-link, .event a {
+/* Кнопки */
+.btn {
   display: inline-block;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #ffffff;
-  padding: 11px 22px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #fff; padding: 12px 26px; border-radius: 999px;
+  font-weight: 600; font-size: 0.95rem;
+  transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: 0 6px 20px rgba(79, 157, 255, 0.25);
 }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(139, 92, 246, 0.35); }
+.btn.secondary { background: var(--glass); border: 1px solid var(--border); box-shadow: none; }
 
-.btn:hover, .project-link:hover, .event a:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(139, 92, 246, 0.35);
+/* Навигация и Шапка */
+header {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(11, 15, 23, 0.7);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
 }
-
-/* ===== БЛОК «ЗАЧЕМ» ===== */
-.goal {
-  padding: 22px 24px;
-  margin-top: 20px;
-  border-left: 3px solid var(--accent);
+nav {
+  max-width: 1000px; margin: auto; padding: 18px 24px;
+  display: flex; justify-content: space-between; align-items: center;
 }
+.logo { font-size: 1.4rem; font-weight: bold; color: #fff; }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 24px; font-size: 0.95rem; }
+.nav-links a { color: var(--muted); transition: 0.3s; }
+.nav-links a:hover { color: var(--accent); }
 
-.goal h2 {
-  margin-top: 0;
-  color: var(--accent);
-  text-transform: none;
-  letter-spacing: 0;
-  font-size: 1.1rem;
-}
+/* Прогресс-бар */
+.progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); width: 0%; z-index: 200; }
 
-.goal p { margin: 0; color: var(--muted); }
+/* Подвал */
+footer { text-align: center; padding: 30px; color: var(--muted); border-top: 1px solid var(--border); font-size: 0.9rem; margin-top: 40px; }
 
-/* ===== КАРТОЧКИ МЕРОПРИЯТИЙ ===== */
-.event {
-  padding: 18px 20px;
-  margin-bottom: 14px;
-  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-}
+/* Анимация появления */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-.event:hover {
-  transform: translateY(-2px);
-  background: var(--glass-strong);
-  border-color: rgba(79, 157, 255, 0.4);
-}
+/* =========================
+   2. СТИЛИ ГЛАВНОЙ СТРАНИЦЫ
+========================= */
+.hero { min-height: 90vh; display: flex; align-items: center; position: relative; }
+.hero-content { max-width: 650px; }
+.hero-label { color: var(--accent); letter-spacing: 3px; font-size: 12px; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+.hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 24px; color: #fff; }
+.hero h1 span { background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { color: var(--muted); font-size: 1.15rem; max-width: 500px; margin-bottom: 32px; }
 
-.event h3 {
-  margin: 0 0 8px;
-  font-size: 1.1rem;
-  color: #ffffff;
-}
+/* Карта пути */
+.map { position: relative; padding-left: 30px; }
+.map::before { content: ""; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: linear-gradient(var(--accent), var(--accent-2)); }
+.map-item { position: relative; margin-bottom: 40px; }
+.map-dot { position: absolute; left: -24px; top: 6px; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); border: 4px solid var(--bg-1); box-shadow: 0 0 15px var(--accent); }
+.map-date { color: var(--accent); font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px; }
+.map-card { padding: 20px 24px; }
+.map-card h3 { color: #fff; margin-bottom: 6px; }
+.map-card p { color: var(--muted); font-size: 0.95rem; }
 
-.event p {
-  margin: 0 0 12px;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.event strong { color: #dbe6f5; }
-
-.event.next {
-  border-color: rgba(79, 157, 255, 0.5);
-  background: linear-gradient(135deg, rgba(79, 157, 255, 0.14), rgba(139, 92, 246, 0.08));
-}
-
-.event.next h3::before { content: "🔥 "; }
-
-.event.past {
-  opacity: 0.45;
-  filter: grayscale(0.7);
-}
-
-.event.past a {
-  pointer-events: none;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: none;
-}
-
-/* ===== О СЕБЕ ===== */
-.about-intro {
-  padding: 24px;
-  margin-bottom: 20px;
-}
-
-.about-intro h2 {
-  margin-top: 0;
-  color: #ffffff;
-  text-transform: none;
-  letter-spacing: -0.3px;
-}
-
-.about-intro p { margin: 0; color: #c9d6e6; }
-
-main ul {
-  padding-left: 22px;
-  margin: 10px 0 24px;
-}
-
-main ul li {
-  margin-bottom: 6px;
-  color: #dbe6f5;
-}
-
-main ul li::marker { color: var(--accent); }
-
-/* ===== ПРОЕКТЫ ===== */
-.projects {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.project {
-  background: var(--glass);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 20px; /* вернули отступы внутри карточки */
-  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-  backdrop-filter: blur(18px);
-}
-
-.project:hover {
-  transform: translateY(-3px);
-  background: var(--glass-strong);
-  border-color: rgba(139, 92, 246, 0.45);
-}
-
-/* Обертка для картинки */
-.project-image {
+/* =========================
+   3. ТЕХНОЛОГИИ (БЕГУЩАЯ СТРОКА)
+========================= */
+.marquee {
   width: 100%;
-  border-radius: 10px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 16px;
-  background: #0b0f17;
+  position: relative;
+  padding: 20px 0;
+  /* Плавное затухание по краям (эффект Apple) */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-.project-image img {
-  display: block;
-  width: 100%;
-  max-height: 350px; /* Ограничиваем высоту, чтобы скрин не был бесконечным */
-  object-fit: cover; /* Обрезает лишнее, сохраняя пропорции */
-  object-position: top; /* Показывает верхнюю часть сайта */
-  transition: transform 0.3s ease;
+.marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  /* Сама анимация: двигаем влево на 50% (ровно на один набор карточек) */
+  animation: scroll 30s linear infinite;
 }
 
-/* Легкое увеличение картинки при наведении */
-.project:hover .project-image img {
-  transform: scale(1.02);
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-50% - 10px)); } /* 10px — это половина gap */
 }
 
-/* Текстовая часть */
-.project h3 {
-  margin: 0 0 8px;
-  color: #ffffff;
-  font-size: 1.15rem;
+/* Сама карточка технологии */
+.skill {
+  width: 240px; /* Фиксированная ширина, чтобы они были одинаковыми */
+  flex-shrink: 0; /* Запрещаем сжиматься */
+  padding: 24px;
+  transition: transform 0.3s, border-color 0.3s;
 }
 
-.project p {
-  margin: 0 0 10px;
+.skill:hover {
+  transform: translateY(-5px);
+  border-color: rgba(79, 157, 255, 0.5);
+}
+
+.skill h3 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.skill p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* =========================
+   4. СТИЛИ ПРОЕКТОВ
+========================= */
+.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.project { display: flex; flex-direction: column; padding: 24px; transition: 0.3s; }
+.project:hover { transform: translateY(-5px); border-color: rgba(79, 157, 255, 0.4); }
+.project-image { width: 100%; height: 180px; border-radius: 10px; overflow: hidden; margin-bottom: 16px; background: #0b0f17; border: 1px solid var(--border); }
+.project-image img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.project h3 { color: #fff; margin-bottom: 8px; font-size: 1.2rem; }
+.project p { color: var(--muted); font-size: 0.95rem; flex-grow: 1; margin-bottom: 16px; }
+.tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.tag { background: rgba(79, 157, 255, 0.15); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+.project .btn { align-self: flex-start; padding: 8px 18px; font-size: 0.85rem; }
+
+/* =========================
+   5. СТИЛИ МЕРОПРИЯТИЙ
+========================= */
+.event { padding: 20px; margin-bottom: 16px; transition: 0.3s; }
+.event:hover { transform: translateY(-2px); border-color: rgba(79, 157, 255, 0.4); }
+.event h3 { color: #fff; margin-bottom: 8px; font-size: 1.1rem; }
+.event p { color: var(--muted); font-size: 0.95rem; margin-bottom: 12px; }
+.event strong { color: #dbe6f5; }
+.event.next { 
+  border-color: rgba(79, 157, 255, 0.5); 
+  background: linear-gradient(135deg, rgba(79, 157, 255, 0.1), rgba(139, 92, 246, 0.05)); 
+  animation: softGlow 3s ease-in-out infinite;
+}
+.event.next { border-color: rgba(79, 157, 255, 0.5); background: linear-gradient(135deg, rgba(79, 157, 255, 0.1), rgba(139, 92, 246, 0.05)); }
+.event.next h3::before { content: "🔥 "; }
+.event.past { opacity: 0.4; filter: grayscale(1); }
+.event.past a { pointer-events: none; }
+
+/* =========================
+   АНИМАЦИЯ БЛИЖАЙШЕГО СОБЫТИЯ
+========================= */
+@keyframes softGlow {
+  0%, 100% {
+    box-shadow: 0 0 0px rgba(79, 157, 255, 0);
+    border-color: rgba(79, 157, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(79, 157, 255, 0.3);
+    border-color: rgba(79, 157, 255, 0.8);
+  }
+}
+
+/* =========================
+   6. СТИЛИ ДОСТИЖЕНИЙ
+========================= */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.achievement {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.achievement-year {
+  color: var(--accent);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.achievement h3 {
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.achievement p {
   color: var(--muted);
   font-size: 0.95rem;
-}
-
-.project-tech {
-  font-size: 0.82rem !important;
-  color: var(--accent) !important;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-}
-
-/* Ссылка-кнопка (делаем ее аккуратной, а не на всю ширину) */
-.project-link {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 15px rgba(79, 157, 255, 0.2);
-}
-
-.project-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.35);
-}
-/* ===== КОНТАКТЫ ===== */
-.contact-card {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-  padding: 24px;
+  flex-grow: 1;
   margin-bottom: 20px;
 }
 
-.contact-photo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
+.achievement .btn {
+  align-self: flex-start;
+  padding: 8px 16px;
+  font-size: 0.85rem;
 }
 
-.avatar {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid rgba(79, 157, 255, 0.6);
-  box-shadow: 0 8px 30px rgba(79, 157, 255, 0.3);
-}
-
-.name {
-  margin: 12px 0 0;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #ffffff;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.contact-info h2 {
-  margin-top: 0;
-  color: #ffffff;
-  text-transform: none;
-  letter-spacing: -0.3px;
-}
-
-.contact-info p {
-  margin: 0 0 14px;
-  color: var(--muted);
-}
-
-.contact-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.contact-list li { margin-bottom: 10px; }
-
-.contact-list a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
-}
-
-.contact-list a:hover { border-bottom-color: var(--accent); }
-
-/* ===== 404 ===== */
-.error-page {
-  text-align: center;
-  padding: 60px 24px;
-}
-
-.error-code {
-  font-size: 6rem;
-  font-weight: 800;
-  margin: 0;
-  line-height: 1;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.error-page h2 {
-  margin: 16px 0 12px;
-  color: #ffffff;
-  text-transform: none;
-  letter-spacing: -0.3px;
-}
-
-.error-page p {
-  color: var(--muted);
-  max-width: 420px;
-  margin: 0 auto 24px;
-}
-
-/* ===== ПОДВАЛ ===== */
-footer {
-  margin-top: 20px;
-  padding: 18px 24px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-footer p { margin: 0; }
-
-/* ===== МОБИЛЬНОЕ ===== */
-@media (max-width: 560px) {
-  body { padding: 20px 14px; }
-  main { padding: 22px 18px; }
-  .hero { padding: 28px 22px; }
-  .hero h2 { font-size: 1.5rem; }
-  .contact-card {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+/* =========================
+   7. АДАПТИВНОСТЬ
+========================= */
+@media (max-width: 700px) {
+  .nav-links { display: none; }
+  section { padding: 60px 0; }
+  .hero h1 { font-size: 2.2rem; }
+  .map { padding-left: 24px; }
+  .map::before { left: 8px; }
+  .map-dot { left: -20px; }
+  .project-image { height: 140px; }
+  
+  /* Уменьшаем карточки технологий на мобилках */
+  .skill {
+    width: 200px;
+    padding: 20px;
   }
-  .error-code { font-size: 4rem; }
 }

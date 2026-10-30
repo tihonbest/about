@@ -3,51 +3,249 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Главная — Мой сайт</title>
+  <title>Тихон — Портфолио</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <div class="progress" id="progress"></div>
+
   <header>
-    <h1>Мой сайт</h1>
     <nav>
-      <a href="index.html">Главная</a>
-      <a href="events.html">Мероприятия</a>
-      <a href="projects.html">Проекты</a>
-      <a href="about.html">О себе</a>
+      <div class="logo">МОЙ<span>САЙТ</span></div>
+      <div class="nav-links">
+        <a href="#map">Путь</a>
+        <a href="#achievements">Достижения</a>
+        <a href="#projects">Проекты</a>
+        <a href="events.html">Мероприятия</a>
+      </div>
     </nav>
   </header>
 
   <main>
+    <!-- ГЕРОЙ -->
     <section class="hero">
-      <h2>Привет 👋</h2>
-      <p>
-        Это мой личный сайт. Здесь я собираю события, которые хочу посетить,
-        и делюсь тем, что мне интересно.
-      </p>
-      <a href="events.html" class="btn">Смотреть мероприятия →</a>
+      <div class="container">
+        <div class="hero-content reveal">
+          <div class="hero-label">Developer Portfolio</div>
+          <h1>Привет! Я <span>Тихон.</span></h1>
+          <p>Изучаю веб-разработку, Python и электронику. Собираю свои проекты и отмечаю этапы на этой карте.</p>
+          <a href="#map" class="btn">Посмотреть карту →</a>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Ближайшее событие</h2>
-      <div id="next-event-container"></div>
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title reveal">Мои технологии</h2>
+        <p class="section-desc reveal">Инструменты, с которыми я работаю.</p>
+      </div>
+
+      <!-- Обертка для бегущей строки (на всю ширину экрана) -->
+      <div class="marquee">
+        <div class="marquee-track">
+          
+          <!-- Первый набор карточек -->
+          <div class="skill glass">
+            <h3>HTML</h3>
+            <p>Структура веб-страниц.</p>
+          </div>
+          <div class="skill glass">
+            <h3>CSS</h3>
+            <p>Стилизация и дизайн.</p>
+          </div>
+          <div class="skill glass">
+            <h3>JavaScript</h3>
+            <p>Интерактивность.</p>
+          </div>
+          <div class="skill glass">
+            <h3>Python</h3>
+            <p>Алгоритмы.</p>
+          </div>
+          <div class="skill glass">
+            <h3>Git</h3>
+            <p>Контроль версий.</p>
+          </div>
+          <div class="skill glass">
+            <h3>GitHub</h3>
+            <p>Хранение проектов.</p>
+          </div>
+          <div class="skill glass">
+            <h3>VS Code</h3>
+            <p>Среда разработки.</p>
+          </div>
+          <div class="skill glass">
+            <h3>С++</h3>
+            <p>Микроконтроллеры.</p>
+          </div>
+
+          <!-- ВТОРОЙ набор (копия) — нужен для бесшовной анимации -->
+          <div class="skill glass">
+            <h3>HTML</h3>
+            <p>Структура веб-страниц.</p>
+          </div>
+          <div class="skill glass">
+            <h3>CSS</h3>
+            <p>Стилизация и дизайн.</p>
+          </div>
+          <div class="skill glass">
+            <h3>JavaScript</h3>
+            <p>Интерактивность.</p>
+          </div>
+          <div class="skill glass">
+            <h3>Python</h3>
+            <p>Алгоритмы.</p>
+          </div>
+          <div class="skill glass">
+            <h3>Git</h3>
+            <p>Контроль версий.</p>
+          </div>
+          <div class="skill glass">
+            <h3>GitHub</h3>
+            <p>Хранение проектов.</p>
+          </div>
+          <div class="skill glass">
+            <h3>VS Code</h3>
+            <p>Среда разработки.</p>
+          </div>
+          <div class="skill glass">
+            <h3>С++</h3>
+            <p>Микроконтроллеры.</p>
+          </div>
+
+        </div>
+      </div>
     </section>
 
-    <h2>Контакты </h2>
-    <section class="hero">
-      <p>
-        Если хочешь что-то предложить, спросить или просто поздороваться — 
-        пиши в Telegram или на почту. Отвечаю, когда могу.
-      </p>
-      <a href="about.html" class="btn">Контакты →</a>
+    <!-- КАРТА ПУТИ -->
+    <section id="map">
+      <div class="container">
+        <h2 class="section-title reveal">Мой путь</h2>
+        <p class="section-desc reveal">История моего развития в технологиях.</p>
+        
+        <div class="map reveal">
+          <div class="map-item">
+            <div class="map-dot"></div>
+            <div class="map-date">ЭТАП 01</div>
+            <div class="map-card glass">
+              <h3>Первые шаги</h3>
+              <p>С детства мне нравилась электроника. Хотелось разобраться, почему всё именно так работает.</p>
+            </div>
+          </div>
+
+          <div class="map-item">
+            <div class="map-dot"></div>
+            <div class="map-date">ЭТАП 02</div>
+            <div class="map-card glass">
+              <h3>Изучение Python</h3>
+              <p>Начав знакомство с НТО, я узнал об этом удобном языке программирования.</p>
+            </div>
+          </div>
+
+          <div class="map-item">
+            <div class="map-dot"></div>
+            <div class="map-date">ЭТАП 03</div>
+            <div class="map-card glass">
+              <h3>Изучение C++</h3>
+              <p>C++ пригодился для написания программ на Arduino.</p>
+            </div>
+          </div>
+
+          <div class="map-item">
+            <div class="map-dot"></div>
+            <div class="map-date">ЭТАП 04</div>
+            <div class="map-card glass">
+              <h3>Создание и защита проекта "Цифровые песочные часы"</h3>
+              <p>В этом проекте были объединены 2 моих знания языка Python и C++, а также я научился качественно паять.</p>
+            </div>
+          </div>
+
+          <div class="map-item">
+            <div class="map-dot"></div>
+            <div class="map-date">СЕЙЧАС</div>
+            <div class="map-card glass">
+              <h3>Веб-разработка</h3>
+              <p>Начал изучать HTML, CSS и JavaScript. Создал собственный сайт-портфолио.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
+    <!-- ДОСТИЖЕНИЯ -->
+    <section id="achievements">
+      <div class="container">
+        <h2 class="section-title reveal">Достижения</h2>
+        <p class="section-desc reveal">Мои результаты и участие в олимпиадах.</p>
+        
+        <div class="achievements-grid">
+          
+          <div class="achievement glass reveal">
+            <div class="achievement-year">2023</div>
+            <h3>Финал НТО</h3>
+            <p>Интерес к олимпиаде НТО, участие и успешный выход в финал.</p>
+            <a href="https://diploma.kruzhok.org/s3/talent-diploma-service/828c6883-40e5-4785-ac0e-67e0f7fb6890/bcf54a48-ae92-44c7-b9da-87bfb1a072ff.pdf" target="_blank" class="btn">Смотреть диплом →</a>
+          </div>
+
+          <div class="achievement glass reveal">
+            <div class="achievement-year">2024</div>
+            <h3>Финал НТО</h3>
+            <p>Интерес к олимпиаде НТО, участие и успешный выход в финал.</p>
+            <a href="https://diploma.kruzhok.org/s3/talent-diploma-service/207912ef-6c63-46c0-b9ad-2615f9b2b4b6/c035bbc4-be9c-4f96-a35c-51ac369cb706.pdf" target="_blank" class="btn">Смотреть диплом →</a>
+          </div>
+
+          <div class="achievement glass reveal">
+            <div class="achievement-year">2024</div>
+            <h3>Призер финала</h3>
+            <p>Выход в финал, призер финала.</p>
+            <a href="https://diploma.kruzhok.org/s3/talent-diploma-service/666c7465-414a-4f74-902a-39b24e71e6e0/08bd9738-e6d1-416c-babe-5efc76679fee.pdf" target="_blank" class="btn">Смотреть диплом →</a>
+          </div>
+
+          <div class="achievement glass reveal">
+            <div class="achievement-year">2025</div>
+            <h3>Конкурс Талант НТО Инженерия</h3>
+            <p>Призер конкурса «Талант НТО» в направлении «Инженерия».</p>
+            <a href="https://diploma.kruzhok.org/s3/talent-diploma-service/8d052f61-a1f5-45df-8dbd-9b9fffcd268d/34be9bd5-dc40-4397-aac5-ebffe7afd396.pdf" target="_blank" class="btn">Смотреть диплом →</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ПРОЕКТЫ -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title reveal">Проекты</h2>
+        <p class="section-desc reveal">То, что я уже сделал.</p>
+        
+        <div class="projects">
+          
+          <div class="project glass reveal">
+            <div class="project-image"><img src="images/Wordglass.jpg" alt="Wordglass"></div>
+            <h3>📚 Wordglass</h3>
+            <p>Тренажер английских слов с карточками и прогрессом.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">JS</span><span class="tag">CSS</span></div>
+            <a href="https://tihonbest.github.io/Wordglass" target="_blank" class="btn">Посмотреть →</a>
+          </div>
+
+          <div class="project glass reveal">
+            <div class="project-image"><img src="images/planer.jpg" alt="Planner"></div>
+            <h3>📝 Индикатор сложности расписания</h3>
+            <p>Школьный веб-планер, который помогает оценить учебную 
+              нагрузку на каждый день и распределить дела в течение недели.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">JS</span><span class="tag">CSS</span></div>
+            <a href="https://tihonbest.github.io/planner/" target="_blank" class="btn">Посмотреть →</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>© 2026 Мой сайт</p>
+    © 2026 Тихон. Создано с интересом к технологиям.
   </footer>
-  <script src="data.js"></script>
+
   <script src="script.js"></script>
 </body>
 </html>
