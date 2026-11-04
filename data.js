@@ -7,6 +7,14 @@ const allEvents = [
     link: "https://olympiad.gazprom.ru/account/preparatory-stage",
     linkText: "Зарегистрироваться"
   },
+  {
+    title: "Лагерь Зеркальный конец регистрации",
+    date: "2026-11-09",
+    time: "23:59",
+    place: "",
+    link: "https://forms.yandex.ru/u/6ae891791f1eb55991702684/",
+    linkText: "Пройти форму"
+ },
  {
     title: "Первые шаги в науку конец регистрации",
     date: "2026-11-10",
