@@ -8,6 +8,22 @@ const allEvents = [
     linkText: "Зарегистрироваться"
   },
   {
+    title: "Лагерь Зеркальный конец регистрации",
+    date: "2026-11-09",
+    time: "23:59",
+    place: "",
+    link: "https://forms.yandex.ru/u/6ae891791f1eb55991702684/",
+    linkText: "Пройти форму"
+ },
+ {
+    title: "Первые шаги в науку конец регистрации",
+    date: "2026-11-10",
+    time: "23:59",
+    place: "",
+    link: "https://forms.yandex.ru/u/66ed7572068ff0643433d1a4",
+    linkText: "Пройти форму"
+  }, 
+  {
     title: "День открытых дверей в ФИБС",
     date: "2026-11-14",
     time: "12:00",
