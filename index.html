@@ -4,7 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Тихон — Портфолио</title>
-  <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="fx.css"
+  <meta name="description" content="Изучаю веб-разработку, Python и электронику. Проекты, достижения на НТО и ближайшие события.">
+  <meta name="theme-color" content="#0b0f17">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Тихон — Портфолио">
+  <meta property="og:description" content="Веб-разработка, Python и электроника. Проекты, достижения на НТО и ближайшие события.">
+  <meta property="og:url" content="https://tihonbest.github.io/">
+  <meta property="og:image" content="https://tihonbest.github.io/images/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="fx.css">
 </head>
 <body>
 
@@ -32,6 +44,15 @@
           <p>Изучаю веб-разработку, Python и электронику. Собираю свои проекты и отмечаю этапы на этой карте.</p>
           <a href="#map" class="btn">Посмотреть карту →</a>
         </div>
+      </div>
+    </section>
+
+    <!-- БЛИЖАЙШЕЕ СОБЫТИЕ (карточку и отсчёт рисуют script.js и fx.js) -->
+    <section id="next-event">
+      <div class="container">
+        <h2 class="section-title reveal">Ближайшее событие</h2>
+        <p class="section-desc reveal">Что у меня в планах.</p>
+        <div id="next-event-container"></div>
       </div>
     </section>
 
@@ -205,13 +226,13 @@
             <div class="project-image"><img src="images/planer.jpg" alt="Planner"></div>
             <h3>📝 Индикатор сложности расписания</h3>
             <p>Школьный веб-планер, который помогает оценить учебную 
-              нагрузку на каждый день.</p>
+              нагрузку на каждый день и распределить дела в течение недели.</p>
             <div class="tags"><span class="tag">HTML</span><span class="tag">JS</span><span class="tag">CSS</span></div>
             <a href="https://tihonbest.github.io/planner/" target="_blank" class="btn">Посмотреть →</a>
           </div>
 
           <div class="project glass reveal">
-            <div class="project-image"><img src="images/MarkIt.jpg" alt="Planner"></div>
+            <div class="project-image"><img src="images/MarkIt.jpg" alt="MarkIt"></div>
             <h3>📈 MarkIt — Калькулятор оценок</h3>
             <p>MarkIt — это простой и умный веб-калькулятор, который помогает 
               засчитывать средний балл и спрогнозировать итоговую оценку по предметам.</p>
@@ -269,6 +290,8 @@
     © 2026 Тихон. Создано с интересом к технологиям.
   </footer>
 
-  <script src="script.js"></script> <script src="fx.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script src="fx.js"></script>
 </body>
 </html>

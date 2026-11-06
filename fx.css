@@ -159,3 +159,52 @@ header.is-scrolled nav { padding-top: 12px; padding-bottom: 12px; }
 @media (prefers-reduced-motion: reduce) {
   .blob, .hero h1 span { animation: none; }
 }
+
+/* ===== Обратный отсчёт ===== */
+.countdown { display: flex; gap: 12px; margin: 16px 0 20px; }
+.cd-cell {
+  min-width: 68px; padding: 10px 12px; text-align: center;
+  border-radius: 12px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border);
+}
+.cd-num { display: block; font-size: 1.9rem; font-weight: 700; line-height: 1.1; color: #fff; font-variant-numeric: tabular-nums; }
+.cd-label { font-size: 0.75rem; color: var(--muted); }
+.cd-done { color: var(--muted); }
+@media (max-width: 700px) {
+  .countdown { gap: 8px; }
+  .cd-cell { min-width: 0; flex: 1; padding: 10px 6px; }
+  .cd-num { font-size: 1.6rem; }
+}
+
+/* ===== Дипломы ===== */
+.diploma-thumb {
+  display: block; width: 100%; aspect-ratio: 4 / 3; margin-bottom: 16px; padding: 0;
+  border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+  background: #0b0f17; cursor: zoom-in;
+}
+.diploma-thumb img {
+  display: block; width: 100%; height: 100%; object-fit: cover; object-position: top;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.diploma-thumb:hover img { transform: scale(1.05); }
+.diploma-thumb:focus-visible, .lb-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 300; display: grid; place-items: center;
+  background: rgba(5, 8, 14, 0.82);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0s 0.3s;
+}
+.lightbox.open { opacity: 1; visibility: visible; transition: opacity 0.3s; }
+.lightbox > img {
+  max-width: min(92vw, 900px); max-height: 76vh; object-fit: contain;
+  border-radius: 12px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6); cursor: zoom-out;
+}
+.lb-bar { position: absolute; bottom: max(22px, env(safe-area-inset-bottom)); left: 50%; translate: -50% 0; }
+.lb-close {
+  position: absolute; top: max(16px, env(safe-area-inset-top)); right: 20px;
+  width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+  background: var(--glass-strong); border: 1px solid var(--border); color: #fff; font-size: 1.1rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .diploma-thumb:hover img { transform: none; }
+}

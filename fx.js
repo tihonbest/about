@@ -155,3 +155,122 @@
     })();
   }
 })();
+
+// ===== Обратный отсчёт до ближайшего события =====
+document.addEventListener("DOMContentLoaded", () => {
+  const sec = document.getElementById("next-event");
+  if (!sec) return;
+  const card = sec.querySelector("#next-event-container .event");
+  const title = card?.querySelector("h3")?.textContent;
+  const ev = typeof allEvents !== "undefined" && allEvents.find(e => e.title === title);
+  if (!card || !ev) { sec.style.display = "none"; return; }
+
+  const target = new Date(`${ev.date}T${ev.time}`);
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const units = [["d", "дн"], ["h", "ч"], ["m", "мин"], ["s", "с"]];
+  const box = document.createElement("div");
+  box.className = "countdown";
+  box.setAttribute("role", "timer");
+  box.innerHTML = units.map(([k, l]) =>
+    `<div class="cd-cell"><span class="cd-num" data-u="${k}">00</span><span class="cd-label">${l}</span></div>`).join("");
+  card.querySelector(".btn").before(box);
+  const nums = Object.fromEntries(units.map(([k]) => [k, box.querySelector(`[data-u="${k}"]`)]));
+
+  const tick = () => {
+    const s = Math.floor((target - Date.now()) / 1000);
+    if (s <= 0) { box.innerHTML = '<p class="cd-done">Событие уже началось</p>'; clearInterval(timer); return; }
+    const v = { d: Math.floor(s / 86400), h: Math.floor(s % 86400 / 3600), m: Math.floor(s % 3600 / 60), s: s % 60 };
+    for (const k in v) {
+      const t = String(v[k]).padStart(2, "0");
+      if (nums[k].textContent !== t) {
+        nums[k].textContent = t;
+        if (!calm) nums[k].animate(
+          [{ transform: "translateY(-8px)", opacity: 0.3 }, { transform: "none", opacity: 1 }],
+          { duration: 300, easing: "ease-out" });
+      }
+    }
+  };
+  const timer = setInterval(tick, 1000);
+  tick();
+});
+
+// ===== Дипломы: превью в карточках и просмотр на весь экран =====
+(() => {
+  const cards = [...document.querySelectorAll(".achievement")];
+  if (!cards.length) return;
+
+  // Порядок как в index.html: НТО 2023, НТО 2024, призёр 2024, Талант НТО 2025
+  const previews = [
+    "images/diplomas/nto-2023.jpg",
+    "images/diplomas/nto-2024.jpg",
+    "images/diplomas/nto-2024-prize.jpg",
+    "images/diplomas/talent-2025.jpg"
+  ];
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const lb = document.createElement("div");
+  lb.className = "lightbox";
+  lb.setAttribute("role", "dialog");
+  lb.setAttribute("aria-modal", "true");
+  lb.setAttribute("aria-label", "Диплом");
+  lb.innerHTML = '<button class="lb-close" type="button" aria-label="Закрыть">✕</button><img alt="">' +
+    '<div class="lb-bar"><a class="btn" target="_blank" rel="noopener">Открыть PDF ↗</a></div>';
+  document.body.append(lb);
+  const big = lb.querySelector("img");
+  const pdf = lb.querySelector(".lb-bar a");
+  const closeBtn = lb.querySelector(".lb-close");
+  let trigger = null;
+
+  const close = () => {
+    lb.classList.remove("open");
+    document.body.style.overflow = "";
+    trigger?.focus({ preventScroll: true });
+  };
+
+  const open = (thumb, href, btn) => {
+    trigger = btn;
+    big.src = thumb.currentSrc || thumb.src;
+    big.alt = thumb.alt;
+    pdf.hidden = !href;
+    if (href) pdf.href = href;
+    lb.classList.add("open");
+    document.body.style.overflow = "hidden";
+    closeBtn.focus({ preventScroll: true });
+    if (calm) return;
+    // Картинка "вылетает" из миниатюры
+    const go = () => {
+      const a = thumb.getBoundingClientRect(), b = big.getBoundingClientRect();
+      if (!b.width) return;
+      const dx = a.left + a.width / 2 - b.left - b.width / 2;
+      const dy = a.top + a.height / 2 - b.top - b.height / 2;
+      big.animate(
+        [{ transform: `translate(${dx}px, ${dy}px) scale(${a.width / b.width})` }, { transform: "none" }],
+        { duration: 450, easing: "cubic-bezier(0.2, 0.8, 0.2, 1)" });
+    };
+    big.complete ? go() : big.addEventListener("load", go, { once: true });
+  };
+
+  lb.addEventListener("click", e => { if (e.target === lb || e.target === big) close(); });
+  closeBtn.addEventListener("click", close);
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && lb.classList.contains("open")) close(); });
+
+  cards.forEach((card, i) => {
+    if (!previews[i]) return;
+    const name = card.querySelector("h3")?.textContent || "Диплом";
+    const year = card.querySelector(".achievement-year")?.textContent || "";
+    const link = card.querySelector("a.btn");
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "diploma-thumb";
+    btn.setAttribute("aria-label", `Открыть диплом: ${name}, ${year}`);
+    const img = new Image();
+    img.loading = "lazy";
+    img.alt = `Диплом: ${name}, ${year}`;
+    img.onerror = () => btn.remove();   // нет файла — карточка остаётся как была
+    img.src = previews[i];
+    btn.append(img);
+    card.prepend(btn);
+    btn.addEventListener("click", () => open(img, link?.href, btn));
+  });
+})();
