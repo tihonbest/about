@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Тихон — Портфолио</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="fx.css"
 </head>
 <body>
 
@@ -43,76 +43,49 @@
 
       <!-- Обертка для бегущей строки (на всю ширину экрана) -->
       <div class="marquee">
-        <div class="marquee-track">
+        <div class="marquee-track" id="skills-track">
           
           <!-- Первый набор карточек -->
           <div class="skill glass">
+            <div class="skill-icon">🌐</div>
             <h3>HTML</h3>
             <p>Структура веб-страниц.</p>
           </div>
           <div class="skill glass">
+            <div class="skill-icon">🎨</div>
             <h3>CSS</h3>
             <p>Стилизация и дизайн.</p>
           </div>
           <div class="skill glass">
+            <div class="skill-icon">⚙️</div>
             <h3>JavaScript</h3>
             <p>Интерактивность.</p>
           </div>
           <div class="skill glass">
+            <div class="skill-icon">🐍</div>
             <h3>Python</h3>
             <p>Алгоритмы.</p>
           </div>
           <div class="skill glass">
+            <div class="skill-icon">🔀</div>
             <h3>Git</h3>
             <p>Контроль версий.</p>
           </div>
           <div class="skill glass">
+            <div class="skill-icon">🐙</div>
             <h3>GitHub</h3>
             <p>Хранение проектов.</p>
           </div>
           <div class="skill glass">
+            <div class="skill-icon">💻</div>
             <h3>VS Code</h3>
             <p>Среда разработки.</p>
           </div>
           <div class="skill glass">
+            <div class="skill-icon">➕</div>
             <h3>С++</h3>
             <p>Микроконтроллеры.</p>
           </div>
-
-          <!-- ВТОРОЙ набор (копия) — нужен для бесшовной анимации -->
-          <div class="skill glass">
-            <h3>HTML</h3>
-            <p>Структура веб-страниц.</p>
-          </div>
-          <div class="skill glass">
-            <h3>CSS</h3>
-            <p>Стилизация и дизайн.</p>
-          </div>
-          <div class="skill glass">
-            <h3>JavaScript</h3>
-            <p>Интерактивность.</p>
-          </div>
-          <div class="skill glass">
-            <h3>Python</h3>
-            <p>Алгоритмы.</p>
-          </div>
-          <div class="skill glass">
-            <h3>Git</h3>
-            <p>Контроль версий.</p>
-          </div>
-          <div class="skill glass">
-            <h3>GitHub</h3>
-            <p>Хранение проектов.</p>
-          </div>
-          <div class="skill glass">
-            <h3>VS Code</h3>
-            <p>Среда разработки.</p>
-          </div>
-          <div class="skill glass">
-            <h3>С++</h3>
-            <p>Микроконтроллеры.</p>
-          </div>
-
         </div>
       </div>
     </section>
@@ -232,20 +205,70 @@
             <div class="project-image"><img src="images/planer.jpg" alt="Planner"></div>
             <h3>📝 Индикатор сложности расписания</h3>
             <p>Школьный веб-планер, который помогает оценить учебную 
-              нагрузку на каждый день и распределить дела в течение недели.</p>
+              нагрузку на каждый день.</p>
             <div class="tags"><span class="tag">HTML</span><span class="tag">JS</span><span class="tag">CSS</span></div>
             <a href="https://tihonbest.github.io/planner/" target="_blank" class="btn">Посмотреть →</a>
+          </div>
+
+          <div class="project glass reveal">
+            <div class="project-image"><img src="images/MarkIt.jpg" alt="Planner"></div>
+            <h3>📈 MarkIt — Калькулятор оценок</h3>
+            <p>MarkIt — это простой и умный веб-калькулятор, который помогает 
+              засчитывать средний балл и спрогнозировать итоговую оценку по предметам.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">JS</span><span class="tag">CSS</span></div>
+            <a href="https://tihonbest.github.io/markit" target="_blank" class="btn">Посмотреть →</a>
           </div>
 
         </div>
       </div>
     </section>
+
+<!-- ПЛАШКА-ТРАНСФОРМЕР -->
+    <section id="contact-plate">
+      <div class="container reveal">
+        
+        <div class="contact-box glass" id="myContactCard">
+          
+          <!-- ЗАКРЫТОЕ СОСТОЯНИЕ (видно по умолчанию) -->
+          <div class="contact-closed">
+            <h2 class="section-title">На связи</h2>
+            <p class="section-desc">Посмотреть исходный код, проекты или связаться со мной.</p>
+            <div class="buttons-row">
+              <a href="https://github.com/tihonbest" target="_blank" class="btn" onclick="event.stopPropagation();">Мой GitHub ↗</a>
+              <button class="btn secondary" onclick="event.stopPropagation(); document.getElementById('myContactCard').classList.add('is-open');">Открыть контакты</button>
+            </div>
+          </div>
+
+          <!-- ОТКРЫТОЕ СОСТОЯНИЕ (появляется при клике) -->
+          <div class="contact-open">
+            <button class="close-btn" onclick="event.stopPropagation(); document.getElementById('myContactCard').classList.remove('is-open');">✕</button>
+            
+            <div class="contact-flex">
+              <!-- Фото (замени images/avatar.jpg на свой путь) -->
+              <img src="images/photo.jpg" alt="Тихон Сергеевич" class="avatar">
+              
+              <div class="contact-info">
+                <h2>Тихон Сергеевич</h2>
+                <p></p>
+                
+                <div class="contact-links">
+                  <a href="https://github.com/tihonbest" target="_blank" class="contact-link">🐙 GitHub</a>
+                  <a href="mailto:tihon848@icloud.com" class="contact-link">✉️ Email</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
     © 2026 Тихон. Создано с интересом к технологиям.
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js"></script> <script src="fx.js"></script>
 </body>
 </html>

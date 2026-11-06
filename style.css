@@ -112,35 +112,45 @@ footer { text-align: center; padding: 30px; color: var(--muted); border-top: 1px
   overflow: hidden;
   position: relative;
   padding: 20px 0;
-  /* Плавное затухание по краям (эффект Apple) */
+  /* Плавное затухание по краям */
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .marquee-track {
   display: flex;
-  gap: 20px;
   width: max-content;
-  /* Сама анимация: двигаем влево на 50% (ровно на один набор карточек) */
-  animation: scroll 30s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
-@keyframes scroll {
+/* Новая анимация, которая двигает строку ровно на ширину одного набора */
+@keyframes scrollMarquee {
   from { transform: translateX(0); }
-  to   { transform: translateX(calc(-50% - 10px)); } /* 10px — это половина gap */
+  to   { transform: translateX(var(--scroll-width)); }
 }
 
-/* Сама карточка технологии */
+/* Карточка технологии */
 .skill {
-  width: 240px; /* Фиксированная ширина, чтобы они были одинаковыми */
-  flex-shrink: 0; /* Запрещаем сжиматься */
+  width: 240px;
+  flex-shrink: 0;
   padding: 24px;
-  transition: transform 0.3s, border-color 0.3s;
+  margin-right: 20px;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 
 .skill:hover {
   transform: translateY(-5px);
   border-color: rgba(79, 157, 255, 0.5);
+  box-shadow: 0 10px 30px rgba(79, 157, 255, 0.1);
+}
+
+.skill-icon {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+  line-height: 1;
 }
 
 .skill h3 {
@@ -258,5 +268,155 @@ footer { text-align: center; padding: 30px; color: var(--muted); border-top: 1px
   .skill {
     width: 200px;
     padding: 20px;
+  }
+}
+/* =========================
+   8. ПЛАШКА-ТРАНСФОРМЕР
+========================= */
+.contact-box {
+  margin: 40px auto;
+  padding: 40px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  position: relative;
+  max-width: 700px;
+}
+
+.contact-box:hover {
+  border-color: rgba(79, 157, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(79, 157, 255, 0.1);
+}
+
+/* Строка с кнопками */
+.buttons-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+/* Закрытое состояние */
+.contact-closed {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+/* Открытое состояние (скрыто по умолчанию) */
+.contact-open {
+  display: none; /* Скрываем, чтобы не занимало место */
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+/* Кнопка закрытия (крестик) */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-btn:hover { color: #fff; }
+
+/* Контент визитки */
+.contact-flex {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(79, 157, 255, 0.6);
+  box-shadow: 0 8px 30px rgba(79, 157, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.contact-info h2 {
+  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.contact-info p {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.contact-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(79, 157, 255, 0.15);
+  color: var(--accent);
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.contact-link:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* =========================
+   СОСТОЯНИЕ "РАСКРЫТО" (JS добавляет класс is-open)
+========================= */
+.contact-box.is-open {
+  cursor: default; /* Меняем курсор, чтобы было понятно, что плашка открыта */
+  text-align: left;
+  padding: 40px;
+}
+
+/* Скрываем закрытый блок */
+.contact-box.is-open .contact-closed {
+  display: none;
+}
+
+/* Показываем открытый блок */
+.contact-box.is-open .contact-open {
+  display: block;
+  opacity: 1;
+}
+
+/* =========================
+   АДАПТИВНОСТЬ ДЛЯ ПЛАШКИ
+========================= */
+@media (max-width: 600px) {
+  .contact-flex {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  .contact-info h2 {
+    font-size: 1.5rem;
+  }
+  .contact-links {
+    justify-content: center;
+  }
+  .contact-box.is-open {
+    padding: 30px 20px;
   }
 }

@@ -79,3 +79,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+  // ==========================================
+  // БЕГУЩАЯ СТРОКА 
+  // ==========================================
+  const track = document.getElementById("skills-track");
+  
+  if (track) {
+    const originalContent = track.innerHTML;
+    const originalCount = track.children.length;
+    let animationDuration = 0;
+
+    function initMarquee() {
+      // 1. Сбрасываем стили, чтобы замерить чистую ширину
+      track.style.animation = 'none';
+      track.innerHTML = originalContent;
+
+      // 2. Клонируем карточки, пока не заполним 2 экрана
+      while (track.scrollWidth < window.innerWidth * 2) {
+        track.innerHTML += originalContent;
+      }
+
+      // 3. Вычисляем ширину ОДНОГО набора
+      const totalSets = track.children.length / originalCount;
+      const singleSetWidth = track.scrollWidth / totalSets;
+
+      // 4. Задаем скорость (80 пикселей в секунду)
+      const speed = 80; 
+      animationDuration = singleSetWidth / speed;
+
+      // 5. Применяем переменную и запускаем анимацию
+      track.style.setProperty('--scroll-width', `-${singleSetWidth}px`);
+      track.style.animation = `scrollMarquee ${animationDuration}s linear infinite`;
+    }
+
+    // Запускаем при загрузке
+    initMarquee();
+
+    // Перезапускаем при изменении размера окна (с небольшой задержкой, чтобы не спамило)
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(initMarquee, 200);
+    });
+  }
