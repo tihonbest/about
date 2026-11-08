@@ -78,6 +78,73 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll(".event.reveal").forEach(el => observer.observe(el));
     }
   }
+
+  // ==========================================
+  // 3. AI EVENTS — отдельный список из data_ai.js
+  // ==========================================
+  const aiContainer = document.getElementById("ai-events-list");
+  if (aiContainer) {
+    const aiItems = Array.isArray(window.aiEvents) ? [...window.aiEvents] : [];
+    aiItems.sort((a, b) => (Number(b.priority) || 0) - (Number(a.priority) || 0)
+      || (Number(b.prestigeScore) || 0) - (Number(a.prestigeScore) || 0)
+      || (Number(b.relevanceScore) || 0) - (Number(a.relevanceScore) || 0)
+      || String(a.date || "9999-12-31").localeCompare(String(b.date || "9999-12-31")));
+
+    if (!aiItems.length) {
+      const empty = document.createElement("p");
+      empty.className = "section-desc";
+      empty.textContent = "Подборка пока формируется. Здесь появятся проверенные олимпиады и конкурсы.";
+      aiContainer.appendChild(empty);
+    }
+
+    aiItems.forEach((ev, index) => {
+      const card = document.createElement("article");
+      card.className = "event glass ai-event" + (index === 0 ? " ai-top" : "");
+      const title = document.createElement("h3");
+      title.textContent = ev.title || "Мероприятие без названия";
+      card.appendChild(title);
+      const addLine = (label, value) => {
+        if (value === undefined || value === null || value === "") return;
+        const p = document.createElement("p");
+        const strong = document.createElement("strong");
+        strong.textContent = label + ": ";
+        p.append(strong, document.createTextNode(String(value)));
+        card.appendChild(p);
+      };
+      addLine("Организатор", ev.organizer);
+      addLine("Дата", ev.date);
+      addLine("Регистрация", ev.registrationStatus);
+      addLine("Сроки регистрации", ev.registrationDates);
+      addLine("Уровень", ev.level);
+      addLine("Классы", ev.eligibility);
+      addLine("Формат", ev.format);
+      addLine("Преимущества", ev.benefits);
+      addLine("Престижность", ev.prestigeScore ? ev.prestigeScore + "/5" : "не оценена");
+      addLine("Соответствие интересам", ev.relevanceScore ? ev.relevanceScore + "/5" : "не оценено");
+      addLine("Приоритет", ev.priority);
+      addLine("Проверено", ev.lastVerified);
+      if (typeof ev.link === "string" && /^https:\/\//i.test(ev.link)) {
+        const link = document.createElement("a");
+        link.className = "btn";
+        link.href = ev.link;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Официальная страница";
+        card.appendChild(link);
+      }
+      aiContainer.appendChild(card);
+    });
+  }
+
+  const aiUpdated = document.getElementById("ai-updated");
+  if (aiUpdated) {
+    const raw = window.aiEventsLastUpdated;
+    if (raw) {
+      const parsed = new Date(raw);
+      aiUpdated.textContent = "Последнее обновление AI Events: " +
+        (Number.isNaN(parsed.getTime()) ? String(raw) : parsed.toLocaleString("ru-RU", { dateStyle: "medium", timeStyle: "short" }));
+    }
+  }
 });
   // ==========================================
   // БЕГУЩАЯ СТРОКА 
