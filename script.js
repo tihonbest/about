@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", () => {
     const scrollTop = window.scrollY;
     const height = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (scrollTop / height) * 100;
+    const progress = height > 0 ? (scrollTop / height) * 100 : 0;
     const progressBar = document.getElementById("progress");
     if (progressBar) progressBar.style.width = progress + "%";
   });
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <article class="event glass next reveal">
             <h3>${next.title}</h3>
             <p><strong>Дата:</strong> ${formattedDate}, ${next.time}</p>
-            <a href="${next.link}" target="_blank" class="btn">${next.linkText}</a>
+            <a href="${next.link}" target="_blank" rel="noopener noreferrer" class="btn">${next.linkText}</a>
           </article>
         `;
         // Принудительно показываем добавленную карточку
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <h3>${ev.title}</h3>
             <p><strong>Дата:</strong> ${formatted}, ${ev.time}</p>
             ${ev.place ? `<p><strong>Где:</strong> ${ev.place}</p>` : ""}
-            <a href="${ev.link}" target="_blank" class="btn">${ev.linkText}</a>
+            <a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="btn">${ev.linkText}</a>
           </article>
         `;
       });
