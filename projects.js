@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const search = document.getElementById("project-search");
   const sort = document.getElementById("project-sort");
+  const statusFilter = document.getElementById("project-status-filter");
   const filters = document.getElementById("project-filters");
   const count = document.getElementById("project-count");
   const empty = document.getElementById("projects-empty");
@@ -69,7 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const searchable = [project.title, project.description, ...(project.technologies || [])].join(" ").toLocaleLowerCase("ru");
       const matchesQuery = !query || searchable.includes(query);
       const matchesCategory = activeCategory === "all" || project.category.includes(activeCategory);
-      return matchesQuery && matchesCategory;
+      const matchesStatus = statusFilter.value === "all" || project.statusType === statusFilter.value;
+      return matchesQuery && matchesCategory && matchesStatus;
     });
 
     if (sort.value === "newest") items.sort((a,b) => b.year - a.year || a.title.localeCompare(b.title, "ru"));
@@ -175,9 +177,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   search.addEventListener("input", render);
   sort.addEventListener("change", render);
+  statusFilter.addEventListener("change", render);
   reset.addEventListener("click", () => {
     search.value = "";
     sort.value = "newest";
+    statusFilter.value = "all";
     activeCategory = "all";
     filters.querySelectorAll(".filter-chip").forEach(chip => {
       const selected = chip.dataset.category === "all";
