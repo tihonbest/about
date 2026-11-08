@@ -212,8 +212,15 @@
       <div class="container">
         <h2 class="section-title reveal">Проекты</h2>
         <p class="section-desc reveal">То, что я уже сделал.</p>
-        
-        <div class="projects">
+
+        <label class="project-search reveal">
+          <span class="project-search-icon" aria-hidden="true">⌕</span>
+          <input id="project-search" type="search" placeholder="Найти проект или технологию..." autocomplete="off" aria-label="Поиск по проектам">
+          <span class="project-search-hint">⌘ K</span>
+        </label>
+        <p class="project-search-count" id="project-search-count" aria-live="polite"></p>
+
+        <div class="projects" id="projects-grid">
           
           <div class="project glass reveal">
             <div class="project-image"><img src="images/Wordglass.jpg" alt="Wordglass"></div>
