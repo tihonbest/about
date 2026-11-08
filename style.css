@@ -452,3 +452,14 @@ a:focus-visible, button:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Ненавязчивый поиск по проектам */
+.project-search { display:flex; align-items:center; gap:12px; width:min(100%,520px); min-height:52px; margin:-12px 0 12px; padding:0 16px; border:1px solid var(--border); border-radius:14px; background:rgba(255,255,255,.045); transition:border-color .2s,background .2s,box-shadow .2s; }
+.project-search:focus-within { border-color:rgba(79,157,255,.65); background:rgba(255,255,255,.07); box-shadow:0 0 0 3px rgba(79,157,255,.09); }
+.project-search-icon { color:var(--accent); font-size:1.65rem; line-height:1; }
+.project-search input { min-width:0; flex:1; border:0; outline:0; background:transparent; color:var(--text); font:inherit; font-size:.95rem; }
+.project-search input::placeholder { color:var(--muted); opacity:.85; }
+.project-search-hint { color:var(--muted); border:1px solid var(--border); border-radius:6px; padding:2px 6px; font-size:.72rem; white-space:nowrap; }
+.project-search-count { min-height:22px; margin:0 0 12px; color:var(--muted); font-size:.82rem; }
+.project[hidden] { display:none !important; }
+@media (max-width:600px) { .project-search { width:100%; } .project-search-hint { display:none; } }
