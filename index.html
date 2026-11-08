@@ -209,43 +209,38 @@
     <!-- ПРОЕКТЫ -->
     <section id="projects">
       <div class="container">
-        <h2 class="section-title reveal">Мои проекты</h2>
-        <p class="section-desc reveal">Интерактивная подборка моих работ. Можно открыть проект прямо здесь или перейти на его страницу.</p>
+        <h2 class="section-title reveal">Проекты</h2>
+        <p class="section-desc reveal">То, что я уже сделал.</p>
+        
+        <div class="projects">
+          
+          <div class="project glass reveal">
+            <div class="project-image"><img src="images/Wordglass.jpg" alt="Wordglass"></div>
+            <h3>📚 Wordglass</h3>
+            <p>Тренажер английских слов с карточками и прогрессом.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">JS</span><span class="tag">CSS</span></div>
+            <a href="https://tihonbest.github.io/Wordglass" target="_blank" class="btn">Посмотреть →</a>
+          </div>
 
-        <div class="project-toolbar reveal">
-          <label class="project-search-wrap">
-            <span class="sr-only">Поиск проектов</span>
-            <span class="search-icon" aria-hidden="true">⌕</span>
-            <input id="project-search" type="search" placeholder="Найти проект или технологию..." autocomplete="off">
-          </label>
-          <label class="project-sort-label" for="project-sort">Сортировка</label>
-          <select id="project-sort" class="project-select" aria-label="Сортировка проектов">
-            <option value="newest">Сначала новые</option>
-            <option value="oldest">Сначала старые</option>
-            <option value="name">По названию</option>
-          </select>
-          <select id="project-status-filter" class="project-select" aria-label="Фильтр по статусу">
-            <option value="all">Любой статус</option>
-            <option value="done">Завершённые</option>
-            <option value="development">В разработке</option>
-          </select>
+          <div class="project glass reveal">
+            <div class="project-image"><img src="images/planer.jpg" alt="Planner"></div>
+            <h3>📝 Индикатор сложности расписания</h3>
+            <p>Школьный веб-планер, который помогает оценить учебную 
+              нагрузку на каждый день и распределить дела в течение недели.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">JS</span><span class="tag">CSS</span></div>
+            <a href="https://tihonbest.github.io/planner/" target="_blank" class="btn">Посмотреть →</a>
+          </div>
+
+          <div class="project glass reveal">
+            <div class="project-image"><img src="images/MarkIt.jpg" alt="MarkIt"></div>
+            <h3>📈 MarkIt — Калькулятор оценок</h3>
+            <p>MarkIt — это простой и умный веб-калькулятор, который помогает 
+              засчитывать средний балл и спрогнозировать итоговую оценку по предметам.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">JS</span><span class="tag">CSS</span></div>
+            <a href="https://tihonbest.github.io/markit" target="_blank" class="btn">Посмотреть →</a>
+          </div>
+
         </div>
-
-        <div class="project-filters reveal" id="project-filters" aria-label="Фильтр по категориям">
-          <button class="filter-chip active" type="button" data-category="all" aria-pressed="true">Все проекты</button>
-          <button class="filter-chip" type="button" data-category="web" aria-pressed="false">Web</button>
-          <button class="filter-chip" type="button" data-category="programming" aria-pressed="false">Программирование</button>
-          <button class="filter-chip" type="button" data-category="education" aria-pressed="false">Образование</button>
-          <button class="filter-chip" type="button" data-category="electronics" aria-pressed="false">Электроника</button>
-        </div>
-
-        <div class="project-meta">
-          <span id="project-count" aria-live="polite"></span>
-          <button id="project-reset" class="project-reset" type="button">Сбросить фильтры</button>
-        </div>
-
-        <div class="projects" id="projects-grid" aria-live="polite"></div>
-        <p class="project-empty" id="projects-empty" hidden>По этому запросу ничего не найдено. Попробуй изменить поиск или фильтры.</p>
       </div>
     </section>
 
@@ -296,7 +291,6 @@
   </footer>
 
   <script src="data.js"></script>
-  <script src="projects.js"></script>
   <script src="script.js"></script>
   <script src="fx.js"></script>
 </body>
