@@ -420,3 +420,10 @@ footer { text-align: center; padding: 30px; color: var(--muted); border-top: 1px
     padding: 30px 20px;
   }
 }
+
+/* AI Events */
+.ai-section-title { margin-top: 72px; color: #b9a4ff; }
+.ai-event { position: relative; }
+.ai-event.ai-top { border-color: rgba(139, 92, 246, 0.65); }
+.ai-event.ai-top::before { content: "ВЫСОКИЙ ПРИОРИТЕТ"; display: inline-block; margin-bottom: 12px; padding: 4px 10px; border-radius: 999px; background: rgba(139, 92, 246, 0.18); color: #c4b5fd; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; }
+.ai-updated { display: inline-block; margin-top: 8px; font-size: 0.82rem; opacity: 0.8; }
