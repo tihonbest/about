@@ -132,10 +132,11 @@ document.addEventListener("DOMContentLoaded", () => {
         link.textContent = "Официальная страница";
         card.appendChild(link);
       }
-      if (typeof ev.source === "string" && /^https:\/\//i.test(ev.source)) {
+      const sourceMatch = typeof ev.source === "string" ? ev.source.match(/https:\/\/[^\s;]+/i) : null;
+      if (sourceMatch) {
         const sourceLink = document.createElement("a");
         sourceLink.className = "event-source";
-        sourceLink.href = ev.source;
+        sourceLink.href = sourceMatch[0];
         sourceLink.target = "_blank";
         sourceLink.rel = "noopener noreferrer";
         sourceLink.textContent = "Источник проверки ↗";
