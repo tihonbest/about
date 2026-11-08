@@ -199,3 +199,32 @@ document.addEventListener("DOMContentLoaded", () => {
       resizeTimer = setTimeout(initMarquee, 200);
     });
   }
+// Поиск по карточкам проектов
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("project-search");
+  const grid = document.getElementById("projects-grid");
+  const count = document.getElementById("project-search-count");
+  if (!input || !grid) return;
+
+  const cards = Array.from(grid.querySelectorAll(".project"));
+  const updateSearch = () => {
+    const query = input.value.trim().toLocaleLowerCase("ru");
+    let visible = 0;
+    cards.forEach(card => {
+      const matches = card.textContent.toLocaleLowerCase("ru").includes(query);
+      card.hidden = !matches;
+      if (matches) visible++;
+    });
+    if (count) count.textContent = query ? (visible ? "Найдено проектов: " + visible : "Ничего не найдено") : cards.length + " проекта";
+  };
+  input.addEventListener("input", updateSearch);
+  updateSearch();
+  document.addEventListener("keydown", event => {
+    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+      event.preventDefault(); input.focus(); input.select();
+    }
+    if (event.key === "Escape" && document.activeElement === input) {
+      input.value = ""; updateSearch(); input.blur();
+    }
+  });
+});
