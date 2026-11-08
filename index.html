@@ -219,10 +219,15 @@
             <input id="project-search" type="search" placeholder="Найти проект или технологию..." autocomplete="off">
           </label>
           <label class="project-sort-label" for="project-sort">Сортировка</label>
-          <select id="project-sort" class="project-select">
+          <select id="project-sort" class="project-select" aria-label="Сортировка проектов">
             <option value="newest">Сначала новые</option>
             <option value="oldest">Сначала старые</option>
             <option value="name">По названию</option>
+          </select>
+          <select id="project-status-filter" class="project-select" aria-label="Фильтр по статусу">
+            <option value="all">Любой статус</option>
+            <option value="done">Завершённые</option>
+            <option value="development">В разработке</option>
           </select>
         </div>
 
