@@ -434,7 +434,7 @@ footer { text-align: center; padding: 30px; color: var(--muted); border-top: 1px
 ========================================== */
 .project-toolbar {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(170px, 220px);
+  grid-template-columns: minmax(0, 1fr) auto minmax(150px, 190px) minmax(150px, 180px);
   align-items: center;
   gap: 12px;
   margin: 0 0 18px;
