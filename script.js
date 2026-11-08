@@ -132,6 +132,15 @@ document.addEventListener("DOMContentLoaded", () => {
         link.textContent = "Официальная страница";
         card.appendChild(link);
       }
+      if (typeof ev.source === "string" && /^https:\/\//i.test(ev.source)) {
+        const sourceLink = document.createElement("a");
+        sourceLink.className = "event-source";
+        sourceLink.href = ev.source;
+        sourceLink.target = "_blank";
+        sourceLink.rel = "noopener noreferrer";
+        sourceLink.textContent = "Источник проверки ↗";
+        card.appendChild(sourceLink);
+      }
       aiContainer.appendChild(card);
     });
   }
@@ -141,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const raw = window.aiEventsLastUpdated;
     if (raw) {
       const parsed = new Date(raw);
-      aiUpdated.textContent = "Последнее обновление AI Events: " +
+      aiUpdated.textContent = "Подборка проверена: " +
         (Number.isNaN(parsed.getTime()) ? String(raw) : parsed.toLocaleString("ru-RU", { dateStyle: "medium", timeStyle: "short" }));
     }
   }
