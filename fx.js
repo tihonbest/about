@@ -274,3 +274,32 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => open(img, link?.href, btn));
   });
 })();
+
+
+// ===== Закреплённая сцена: прогресс прокрутки управляет разборкой 3D-объекта =====
+(() => {
+  const root = document.querySelector("#story");
+  if (!root) return;
+  const track = root.querySelector(".story-track");
+  const steps = [...root.querySelectorAll(".story-step")];
+  const bar = root.querySelector(".story-progress i");
+  const counter = root.querySelector(".story-counter");
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) { root.dataset.stage = "0"; return; }
+  let queued = false;
+  const render = () => {
+    queued = false;
+    const rect = track.getBoundingClientRect();
+    const range = Math.max(1, track.offsetHeight - innerHeight);
+    const progress = Math.min(1, Math.max(0, -rect.top / range));
+    const stage = Math.min(2, Math.floor(progress * 3));
+    root.dataset.stage = String(stage);
+    steps.forEach((step, i) => step.classList.toggle("is-active", i === stage));
+    if (bar) bar.style.width = (progress * 100).toFixed(2) + "%";
+    if (counter) counter.innerHTML = String(stage + 1).padStart(2,"0") + " <b>/</b> 03";
+  };
+  const request = () => { if (!queued) { queued = true; requestAnimationFrame(render); } };
+  addEventListener("scroll", request, { passive: true });
+  addEventListener("resize", request);
+  render();
+})();
